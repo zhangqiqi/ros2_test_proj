@@ -10,7 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     urdf_tutorial_path = get_package_share_path('tank_model')
-    default_model_path = urdf_tutorial_path / 'urdf/tank_model.urdf'
+    default_model_path = urdf_tutorial_path / 'urdf/tank_model.xacro'
     default_rviz_config_path = urdf_tutorial_path / 'rviz/urdf.rviz'
 
     gui_arg = DeclareLaunchArgument(name='gui', default_value='false', choices=['true', 'false'],
@@ -62,6 +62,6 @@ def generate_launch_description():
         joint_state_publisher_node,
         joint_state_publisher_gui_node,
         robot_state_publisher_node,
-        rviz_node,
-        test_node
+        rviz_node
+        # test_node
     ])

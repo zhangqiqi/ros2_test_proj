@@ -2,6 +2,7 @@
 <robot name="tank_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="$(find tank_model)/urdf/wheel_gazebo.xacro" />
+    <xacro:include filename="$(find tank_model)/urdf/camera_gazebo.xacro"/>
 
     <xacro:macro name="wheel_joint" params="prefix lr_reflect fb_reflect">
         <joint name="${prefix}_wheel_joint" type="continuous">
@@ -27,21 +28,12 @@
     <joint name="tank_camera_joint" type="fixed">
         <origin xyz="0.2 0 0.025" rpy="0 0 0"/>
         <parent link="base_link"/>
-        <child link="tank_camera_link"/>
+        <child link="front_camera_link"/>
         <axis xyz="0 1 0"/>
     </joint>
 
-    <link name="tank_camera_link">
-        <visual>
-            <origin xyz=" -0.0125 0 0.015" rpy="0 0 0" />
-            <geometry>
-                <box size="0.025 0.1 0.03" />
-            </geometry>
-            <material name="green">
-                <color rgba="0 1 0 1"/>
-            </material>
-        </visual>
-    </link>
+    <xacro:usb_camera prefix="front_camera"/>
+
 
     <joint name="tank_body_joint" type="fixed">
         <origin xyz="-0.05 0 0.025" rpy="0 0 0"/>

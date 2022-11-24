@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wheel">
 
-    <xacro:property name="M_PI" value="3.1415926"/>
+    <xacro:include filename="$(find tank_model)/urdf/common_gazebo.xacro"/>
+
     <xacro:property name="wheel_mass" value="0.2"/>
     <xacro:property name="wheel_radius" value="0.06"/>
     <xacro:property name="wheel_length" value="0.025"/>
@@ -23,14 +24,7 @@
                     <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
                 </geometry>
             </collision>
-
-            <!-- enable this inertial lable will not show the wheel model, the err str is 'iyy is not a valid double', why? -->
-            <!-- <inertial>
-                <mass value="${wheel_mass}"/>
-                <inertia ixx="${wheel_mass*(3*wheel_radius*wheel_radius+wheel_length*wheel_length)/12}"
-                            ixy="0" ixz="0" iyy="{wheel_mass*(3*wheel_radius*wheel_radius+wheel_length*wheel_length)/12}"
-                            iyz="0" izz="${wheel_mass*wheel_radius*wheel_radius/2}"/>
-            </inertial> -->
+            <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}" h="${wheel_length}"/>
         </link>
 
         <gazebo reference="${prefix}_wheel_link">

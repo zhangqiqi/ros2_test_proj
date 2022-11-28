@@ -47,7 +47,7 @@
                         <stddev>0.007</stddev>
                     </noise>
                 </camera>
-                    <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
+                <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
 				    <ros>
 				        <!-- <namespace>stereo</namespace> -->
 				        <remapping>~/image_raw:=image_raw</remapping>

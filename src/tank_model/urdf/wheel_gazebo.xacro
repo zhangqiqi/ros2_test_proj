@@ -6,6 +6,7 @@
     <xacro:property name="wheel_mass" value="0.2"/>
     <xacro:property name="wheel_radius" value="0.06"/>
     <xacro:property name="wheel_length" value="0.025"/>
+    <xacro:property name="wheel_joint_y" value="0.19"/>
 
     <xacro:macro name="wheel" params="prefix">
         <link name="${prefix}_wheel_link">
@@ -14,7 +15,7 @@
                 <geometry>
                     <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
                 </geometry>
-                <material name="white">
+                <material name="Gray">
                     <color rgba="1 1 1 0.9"/>
                 </material>
             </visual>
@@ -27,9 +28,9 @@
             <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}" h="${wheel_length}"/>
         </link>
 
-        <gazebo reference="${prefix}_wheel_link">
+        <!-- <gazebo reference="${prefix}_wheel_link">
             <material>Gazebo/Gray</material>
-        </gazebo>
+        </gazebo> -->
 
         <transmission name="${prefix}_wheel_joint_trans">
             <type>transmission_interface/SimpleTransmission</type>
